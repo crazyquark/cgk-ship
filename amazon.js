@@ -1,6 +1,5 @@
 let {
-    AmazonClient,
-    PrestigeClient
+    AmazonClient
 } = require('shipit');
 
 amazonClient = new AmazonClient();
