@@ -22,7 +22,7 @@ app.get('/track', (req, res) => {
   let trackingID = req.query.trackingID;
 
   if (!trackingID) {
-    res.send({
+    return res.send({
       error: 'Please provide a tracking ID'
     })
   }
@@ -34,7 +34,7 @@ app.get('/track', (req, res) => {
     if (carriers.length > 0) {
       carrier = carriers[0];
     } else {
-      res.send({
+      return res.send({
         error: 'Cannot guess carrier'
       });
     }
