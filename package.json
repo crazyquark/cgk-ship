@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/crazyquark/cgk-ship#readme",
   "dependencies": {
+    "express": "^4.14.0",
     "shipit": "^1.0.2"
   }
 }
