@@ -17,13 +17,22 @@ app.get('/guessCarriers', (req, res) => {
   });
 });
 
-app.get('/track' , (req, res) => {
+app.get('/track', (req, res) => {
   let carrier = req.query.carrier;
   let trackingID = req.query.trackingID;
 
-  res.send({
-    info: 'N/A'
-  });
+  debug('Carrier: %s', carrier);
+  debug('Tracking ID: %s', trackingID);
+
+  let carrierClient = require('./lib/' + carrier + '.js');
+  
+  if (carrierClient) {
+    carrierClient.track(trackingID).then((result) => {
+      res.send(result)
+    }, (err) => {
+      res.send(err);
+    }); 
+  }
 });
 
 app.listen(port, function () {
