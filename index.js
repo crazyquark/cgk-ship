@@ -18,14 +18,35 @@ app.get('/guessCarriers', (req, res) => {
 });
 
 app.get('/track', (req, res) => {
-  let carrier = req.query.carrier;
+  var carrier = req.query.carrier;
   let trackingID = req.query.trackingID;
+
+  if (!trackingID) {
+    res.send({
+      error: 'Please provide a tracking ID'
+    })
+  }
+
+  // Try to guess carrier
+  if(!carrier) {
+    let carriers = Guess.guessCarriers(trackingID);
+
+    if (carriers.length > 0) {
+      carrier = carriers[0];
+    } else {
+      res.send({
+        error: 'Cannot guess carrier'
+      });
+    }
+
+    debug('Guessed carrier: %s', carrier);
+  }
 
   debug('Carrier: %s', carrier);
   debug('Tracking ID: %s', trackingID);
 
   let carrierClient = require('./lib/' + carrier + '.js');
-  
+
   if (carrierClient) {
     carrierClient.track(trackingID).then((result) => {
       res.send(result)
