@@ -31,7 +31,7 @@ app.get('/api/track', (req, res) => {
   }
 
   // Try to guess carrier
-  if(!carrier) {
+  if (!carrier) {
     let carriers = Guess.guessCarriers(trackingID);
 
     if (carriers.length > 0) {
@@ -48,15 +48,22 @@ app.get('/api/track', (req, res) => {
   debug('Carrier: %s', carrier);
   debug('Tracking ID: %s', trackingID);
 
-  let carrierClient = require('./lib/' + carrier + '.js');
+  try {
+    let carrierClient = require('./lib/' + carrier + '.js');
 
-  if (carrierClient) {
-    carrierClient.track(trackingID).then((result) => {
-      res.send(result)
-    }, (err) => {
-      res.send(err);
-    }); 
+    if (carrierClient) {
+      carrierClient.track(trackingID).then((result) => {
+        res.send(result)
+      }, (err) => {
+        res.send(err);
+      });
+    }
+  } catch (err) {
+    res.send({
+      error: err
+    });
   }
+
 });
 
 app.get('*', (req, res) => {

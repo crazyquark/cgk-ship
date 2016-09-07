@@ -10,6 +10,14 @@ function mainController($scope, $http) {
             name: 'UPS',
             value: 'ups',
         },
+        {
+            name: 'TNT',
+            value: 'tnt',
+        },
+        {
+            name: 'DHL',
+            value: 'dhl',
+        },
     ];
 
     $scope.carrier = $scope.availableCarriers[0];
