@@ -9,7 +9,10 @@ var app = express();
 
 let port = 3000;
 
-app.get('/guessCarriers', (req, res) => {
+app.use(express.static(__dirname + '/public'));
+
+
+app.get('/api/guess', (req, res) => {
   let trackingID = req.query.trackingID;
 
   res.send({
@@ -17,7 +20,7 @@ app.get('/guessCarriers', (req, res) => {
   });
 });
 
-app.get('/track', (req, res) => {
+app.get('/api/track', (req, res) => {
   var carrier = req.query.carrier;
   let trackingID = req.query.trackingID;
 
@@ -54,6 +57,10 @@ app.get('/track', (req, res) => {
       res.send(err);
     }); 
   }
+});
+
+app.get('*', (req, res) => {
+  res.sendfile('./public/index.html');
 });
 
 app.listen(port, function () {
