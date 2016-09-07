@@ -25,6 +25,10 @@ angular.module('trackingApp')
                 name: 'FedEx',
                 value: 'fedex',
             },
+            {
+                name: 'Schenker',
+                value: 'schenker',
+            }
         ];
 
         $scope.carrier = $scope.availableCarriers[0];
