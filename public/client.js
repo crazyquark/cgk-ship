@@ -40,9 +40,9 @@ function mainController($scope, $http) {
                 console.log(data);
 
                 if (data.error) {
-                    swal('No go', 'There was an error: ' + data.error, 'error');
+                    swal('No go', 'There was an error: ' + JSON.stringify(data.error), 'error');
                 } else {
-                    swal('Here\'s your data:', JSON.stringify(data)) ;
+                    swal('Here\'s your data:', JSON.stringify(data), 'success') ;
                 }
             }, function (err) {
                 console.log(err);
