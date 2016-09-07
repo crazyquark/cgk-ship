@@ -8,8 +8,10 @@ function mainController($scope, $http) {
 
         if ($scope.trackingNumber) {
             $http.get('/api/track?trackingID=' + $scope.trackingNumber).then(function (res) {
-                if (res.error) {
-                    
+                var data = res.data;
+
+                if (data.error) {
+                    swal('No go', 'There was an error: ' + data.error, 'error');
                 }
             }, function (err) {
                 console.log(err);
