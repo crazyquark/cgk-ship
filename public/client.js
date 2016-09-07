@@ -11,12 +11,20 @@ function mainController($scope, $http) {
             value: 'ups',
         },
         {
+            name: 'USPS',
+            value: 'usps',
+        },
+        {
             name: 'TNT',
             value: 'tnt',
         },
         {
             name: 'DHL',
             value: 'dhl',
+        },
+        {
+            name: 'FedEx',
+            value: 'fedex',
         },
     ];
 
