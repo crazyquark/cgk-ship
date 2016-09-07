@@ -66,7 +66,7 @@ app.get('/api/track', (req, res) => {
 
 });
 
-app.get('*', (req, res) => {
+app.get('/*', (req, res) => {
   res.sendfile('./public/index.html');
 });
 
