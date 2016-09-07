@@ -1,0 +1,20 @@
+{
+  "name": "cgk-ship",
+  "description": "Shipment Tracking Integrated Service",
+  "main": "app.js",
+  "authors": [
+    "crazyquark"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/crazyquark/cgk-ship",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sweetalert": "^1.1.3"
+  }
+}
